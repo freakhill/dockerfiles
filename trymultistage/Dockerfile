@@ -1,10 +1,10 @@
 FROM freakhill/guixbuilder:latest AS guixbuilder
-RUN pack s6 bash
+RUN pack /usr/local/bin s6 bash
 
 ### build our final image
 FROM ubuntu:latest
 
-COPY --from=guixbuilder /target.tar.gz /
-RUN tar xf /target.tar.gz && rm /target.tar.gz
+COPY --from=guixbuilder /packed.tar.gz /
+RUN tar xf /packed.tar.gz && rm /packed.tar.gz
 
 CMD = ["/bin/bash"]
