@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+function img_build() {
+    docker run --rm -it \
+           --privileged \
+           --security-opt seccomp=unconfined \
+           --security-opt apparmor=unconfined \
+           --name img \
+           --volume $(pwd):/home/user/src:ro \
+           --workdir /home/user/src \
+           --volume "${HOME}/.docker:/root/.docker:ro" \
+           r.j3ss.co/img build -t freakhill/guix-builder .
+}
+
+function makisu_build() {
+    makisu_version=${MAKISU_VERSION:-v0.1.11}
+    cd ${@: -1}
+    docker run -i --rm --net host \
+           -v /var/run/docker.sock:/docker.sock \
+           -e DOCKER_HOST=unix:///docker.sock \
+           -v $(pwd):/makisu-context \
+           -v /tmp/makisu-storage:/makisu-storage \
+           gcr.io/makisu-project/makisu:$makisu_version build \
+           --commit=explicit \
+           --modifyfs=true \
+           --load \
+           ${@:1:${#@}-1} /makisu-context
+    cd -
+}
+
+function docker_build() {
+    docker build -t freakhill/guix-builder .
+}
+
+#img_build
+#makisu_build -t myimage .
+docker_build

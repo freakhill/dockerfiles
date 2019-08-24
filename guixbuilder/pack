@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+GUIX_PROFILE="`echo ~root`/.config/guix/current" ; \
+source $GUIX_PROFILE/etc/profile
+
+guix-daemon --build-users-group=guixbuild --disable-chroot &
+mv $(guix pack $* -S /usr/local/bin=bin) /target.tar.gz

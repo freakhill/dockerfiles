@@ -1,0 +1,3 @@
+#!/usr/bin/env /bin/bash
+
+exec su -c "source ~$THE_USER/.bashrc && exec emacs --fg-daemon" $THE_USER

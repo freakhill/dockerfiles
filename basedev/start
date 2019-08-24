@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+case $OSTYPE in
+  darwin*)
+    sudo=
+    ;;
+  *)
+    sudo=sudo
+    ;;
+esac
+
+if type -a bc
+then
+    random_token=$(echo "obase=16; $RANDOM" | bc)
+else
+    random_token=$RANDOM
+fi
+
+$sudo docker run -d \
+      --privileged \
+      --name "fk-dev-$random_token" \
+      -h "fk-dev-$random_token" \
+      -p 10022:10022 \
+      -p 22000-22099:22000-22099/udp \
+      -p 21000-21099:21000-21099/tcp \
+      -p 8000-8100:8000-8100/tcp \
+      -v $HOME:/m \
+      -v /:/host \
+      freakhill-dev

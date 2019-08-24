@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+set -e
+
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+pushd $dir > /dev/null
+
+function finish {
+    rm -fr ./ssh-out-of-git
+    popd
+}
+
+trap finish EXIT
+
+## MacOS stuff
+
+if [[ $OSTYPE =~ "darwin" ]]
+then
+  echo "MacOS type build."
+  sudo=
+  sed="sed -i -e"
+else
+  echo "Default type build."
+  sudo=sudo
+  sed="sed -i"
+fi
+
+## stuff for dockerfile
+
+
+USER=`whoami`
+
+date > cachebuster-out-of-git
+$sed "s/ENV THE_USER=.*/ENV THE_USER=$USER/" ./Dockerfile
+$sed "s/ENV THE_UID=.*/ENV THE_UID=$UID/" ./Dockerfile
+
+$sudo docker pull ubuntu
+
+cp -r $HOME/.ssh ./ssh-out-of-git
+$sudo docker build -t freakhill-dev-base ./
+
+$sudo docker tag freakhill-dev-base freakhill-dev
+
+for p in `ls ./post-dockerfile-privileged-steps/* | sort`
+do
+    script=$(basename $p)
+    user=${script##*.}
+    echo ">> executed privileged build step: $script"
+    name=freakhill-dev-build-privileged-$RANDOM
+    $sudo docker run \
+                 --privileged \
+                 --user $user \
+                 --name $name \
+                 freakhill-dev /post-dockerfile-privileged-steps/$script
+    $sudo docker commit --change="CMD [\"s6-svscan\", \"/servers\"]" \
+          $name freakhill-dev
+    $sudo docker rm $name
+done
+
+echo "COMPLETE!"

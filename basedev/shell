@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+r=$RANDOM
+let "r %= 100"
+r=$(printf "%03d" $r)
+
+export LC_CTYPE=en_US.UTF-8
+mosh --ssh="ssh -p 10022" -p 22$r $USER@127.0.0.1 -- tmux $*
+
+if ! [ $? -eq 0 ]
+then
+  cat <<EOF
+
+#########
+`mosh` port is randomly chosen and might have hit an already bound port.
+Please retry!
+EOF
+fi

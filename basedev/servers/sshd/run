@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# forced to open 0.0.0.0 because of macos shenanigans
+exec s6-setuidgid $THE_USER /usr/sbin/sshd \
+     -o PermitRootLogin=no \
+     -o ListenAddress=0.0.0.0 \
+     -h /home/$THE_USER/.ssh/id_rsa \
+     -p 10022 \
+     -Dd
+
+# -o ListenAddress=$(ip addr | awk '/inet/ && /eth0/{sub(/\/.*$/,"",$2); print $2}') \
