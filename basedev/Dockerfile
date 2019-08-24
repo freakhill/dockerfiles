@@ -2,11 +2,14 @@
 # My base dev environment
 # IMAGE NAME: freakhill-dev
 
-FROM ubuntu:latest
-
 # this dockerfile is unsafe as fuck!
 
 ##################################################
+
+FROM freakhill/guixbuilder:latest AS guixbuilder
+RUN pack /usr/local/bin s6 s6-rc s6-dns s6-networking
+
+FROM ubuntu:latest
 
 RUN mkdir /build /install
 
@@ -70,13 +73,9 @@ RUN chown -R root:root /servers && chmod u+w -R /servers
 
 RUN rm -fr /build /install
 
-##################################################
-# unfortunately guix required ~privileged~...
-# so to install guix packages...
-
-COPY post-dockerfile-privileged-steps /post-dockerfile-privileged-steps
-
-##################################################
+# Guix packages (s6 included)
+COPY --from=guixbuilder /packed.tar.gz /
+RUN tar xf /packed.tar.gz && rm /packed.tar.gz
 
 # mount point for dropbox, to share history
 RUN mkdir /dropbox
