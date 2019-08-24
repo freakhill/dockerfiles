@@ -1,4 +1,4 @@
-FROM freakhill/guix-builder:latest AS guixbuilder
+FROM freakhill/guixbuilder:latest AS guixbuilder
 RUN pack s6 bash
 
 ### build our final image

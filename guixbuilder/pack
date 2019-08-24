@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+set -euxo pipefail
+
+binary_simlink_dir=$1
+shift
+
 GUIX_PROFILE="`echo ~root`/.config/guix/current" ; \
 source $GUIX_PROFILE/etc/profile
 
 guix-daemon --build-users-group=guixbuild --disable-chroot &
-mv $(guix pack $* -S /usr/local/bin=bin) /target.tar.gz
+mv $(guix pack $* -S "$binary_simlink_dir"=bin) /target.tar.gz
