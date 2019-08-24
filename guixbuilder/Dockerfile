@@ -30,5 +30,5 @@ COPY guixbuilder/guix-firstpull.sh /
 RUN /guix-firstpull.sh
 
 ### And now the multistage build magic!
-COPY pack /bin/pack
+COPY guixbuilder/pack /bin/pack
 RUN chmod +x /bin/pack
