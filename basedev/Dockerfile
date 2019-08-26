@@ -77,7 +77,8 @@ RUN tar xf /packed.tar.gz && rm /packed.tar.gz
 RUN mkdir /dropbox
 WORKDIR /
 
-CMD ["/opt/guixpack/bin/s6-svscan", "/servers"]
+ENV PATH="$PATH:/opt/guixpack/bin"
+CMD ["s6-svscan", "/servers"]
 
 # ssh
 EXPOSE 10022/tcp
