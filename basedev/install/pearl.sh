@@ -22,3 +22,7 @@ PEARL_PACKAGES_DESCR["freakhill-emacs"]="my emacs conf"
 PEARL_PACKAGES["freakhill-guix"]="https://github.com/freakhill/dotguix.git"
 PEARL_PACKAGES_DESCR["freakhill-guix"]="my guix recipes and stuff to update/install"
 EOF
+
+pearl install freakhill-emacs
+pearl install freakhill-stuff
+
