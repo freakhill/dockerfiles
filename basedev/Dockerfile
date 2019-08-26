@@ -7,7 +7,7 @@
 ##################################################
 
 FROM freakhill/guixbuilder:latest AS guixbuilder
-RUN pack /usr/local/bin s6 s6-rc s6-dns s6-networking
+RUN pack /opt/guixpack/bin s6 s6-rc s6-dns s6-networking
 
 FROM ubuntu:latest
 
@@ -76,6 +76,8 @@ RUN tar xf /packed.tar.gz && rm /packed.tar.gz
 # mount point for dropbox, to share history
 RUN mkdir /dropbox
 WORKDIR /
+
+CMD ["/opt/guixpack/bin/s6-svscan", "/servers"]
 
 # ssh
 EXPOSE 10022/tcp
