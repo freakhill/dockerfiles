@@ -23,5 +23,5 @@ PEARL_PACKAGES["freakhill-guix"]="https://github.com/freakhill/dotguix.git"
 PEARL_PACKAGES_DESCR["freakhill-guix"]="my guix recipes and stuff to update/install"
 EOF
 
-bash -c "pearl install freakhill-emacs freakhill-stuff"
+bash -c "source ~/.bashrc; pearl install freakhill-emacs freakhill-stuff"
 
