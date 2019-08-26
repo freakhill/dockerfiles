@@ -24,10 +24,6 @@ RUN /install/user.sh
 ### base
 COPY install/base.sh /install
 RUN /install/base.sh
-### guix (server run by s6)
-COPY install/guix.sh /install
-RUN /install/guix.sh
-ENV PATH="/var/guix/profiles/default/guix-profile/bin:/var/guix/profiles/default/guix-profile/sbin${PATH:+:}$PATH"
 ### sshd
 COPY ssh-out-of-git /ssh
 COPY install/sshd.sh /install
