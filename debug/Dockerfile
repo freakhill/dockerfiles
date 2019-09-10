@@ -6,7 +6,7 @@
 
 FROM freakhill/guixbuilder:latest AS guixbuilder
 RUN pack /links \
-        less more vim emacs-nox curl wget ncdu netcat stow
+        less more vim emacs curl wget ncdu netcat
 ### TODO: create a recipe to build lnav
 ### or download directly from
 ### https://github.com/tstack/lnav/releases/download/v0.8.5/lnav-0.8.5-linux-64bit.zip
