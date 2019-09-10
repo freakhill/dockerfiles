@@ -20,7 +20,7 @@ RUN tar xf /packed.tar.gz && rm /packed.tar.gz
 RUN mkdir -p /staticbins
 
 ### we add static binaries we want
-RUN apt add wget unzip
+RUN apk add wget unzip
 RUN wget https://github.com/tstack/lnav/releases/download/v0.8.5/lnav-0.8.5-linux-64bit.zip
 RUN unzip lnav-0.8.5-linux-64bit.zip
 RUN cp lnav-0.8.5/lnav /staticbins/
