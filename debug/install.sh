@@ -19,7 +19,7 @@ check_we_are_mounted_on_slash_debug() {
 }
 
 install_path() {
-    export PATH="$DIR/debug/bin:$PATH"
+    export PATH="/debug/guix/bin:/debug/staticbins:$PATH"
     return 0
 }
 

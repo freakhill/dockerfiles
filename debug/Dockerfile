@@ -5,18 +5,27 @@
 # IMAGE NAME: debug
 
 FROM freakhill/guixbuilder:latest AS guixbuilder
-RUN pack /links \
+RUN pack /guix \
         bash less more vim emacs curl wget ncdu netcat
 ### TODO: create a recipe to build lnav
 ### or download directly from
-### https://github.com/tstack/lnav/releases/download/v0.8.5/lnav-0.8.5-linux-64bit.zip
 
 FROM alpine:latest
 
 WORKDIR /
 
+### packed with guix
 COPY --from=guixbuilder /packed.tar.gz /
 RUN tar xf /packed.tar.gz && rm /packed.tar.gz
+
+### directory for static binaries
+RUN mkdir -p /staticbins
+
+### we add static binaries we want
+RUN apt add wget unzip
+RUN wget https://github.com/tstack/lnav/releases/download/v0.8.5/lnav-0.8.5-linux-64bit.zip
+RUN unzip lnav-0.8.5-linux-64bit.zip
+RUN cp lnav-0.8.5/lnav /staticbins/
 
 # run on the host to mount the volume to a running container
 ADD debug/mount.sh /
