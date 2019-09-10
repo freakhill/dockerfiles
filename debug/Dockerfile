@@ -6,9 +6,7 @@
 
 FROM freakhill/guixbuilder:latest AS guixbuilder
 RUN pack /guix \
-        bash less more vim emacs curl wget ncdu netcat
-### TODO: create a recipe to build lnav
-### or download directly from
+        bash less vim emacs curl wget ncdu netcat unzip tar bzip2
 
 FROM alpine:latest
 
