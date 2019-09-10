@@ -24,11 +24,11 @@ RUN bsdtar -xf guix-binary-$GUIX_VERSION.x86_64-linux.tar.xz && mv var/guix /var
 WORKDIR /
 ### finish the setup
 ### this is run from docker hub, so we need full repo paths...
-COPY guixbuilder/guix-setup.sh /
+COPY guix-setup.sh /
 RUN /guix-setup.sh
-COPY guixbuilder/guix-firstpull.sh /
+COPY guix-firstpull.sh /
 RUN /guix-firstpull.sh
 
 ### And now the multistage build magic!
-COPY guixbuilder/pack /bin/pack
+COPY pack /bin/pack
 RUN chmod +x /bin/pack
