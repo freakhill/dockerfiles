@@ -28,4 +28,4 @@ ADD debug/install.sh /
 # not needed, just added for reference, it's the script to download this
 # image, decompress it, and prepare it to get the generated directory
 # mounted on containers.
-ADD debug/download.sh
+ADD debug/download.sh /
