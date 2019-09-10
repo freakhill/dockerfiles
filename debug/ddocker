@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+################################################################################
+# "ddocker" -> debug docker
+# kinda dumb script
+# run docker with the parameters for the extra debug volume :p
+################################################################################
+
+set -euxo pipefail
+
+DEBUG_IMAGE="freakhill/debug"
+
+docker pull "$DEBUG_IMAGE"
+DEBUG_IMAGE_SHA=$(docker inspect --format='{{index .RepoDigests 0}}' $DEBUG_IMAGE)
+STORAGE_DIR="/tmp/fkdebug-$DEBUG_IMAGE_SHA"
+
+if [ ! -d "$STORAGE_DIR" ]
+then
+    docker save freakhill/debug -o "$STORAGE_DIR/archive.tar"
+    pushd "$STORAGE_DIR"
+    tar xf archive.tar
+    popd
+    ln -s "$STORAGE_DIR" "/tmp/freakhill-debug"
+fi
+
+# you can also mount the volume directly by hand~~~
+# mount it to "/debug"! or it won't work
+
+docker run -v "$STORAGE_DIR:/debug" "${@}"
