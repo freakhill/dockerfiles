@@ -3,38 +3,44 @@
 set -euxo pipefail
 
 DEBUG_IMAGE="freakhill/debug"
-DEBUG_IMAGE_SHA=
-STORAGE_DIR=
 
 main() {
-    pull_latest_image_and_get_sha
-    if [ ! -d "$STORAGE_DIR" ]
+    local sha
+    docker pull "$DEBUG_IMAGE"
+    sha=$(get_image_sha "$DEBUG_IMAGE")
+    local storage_dir
+    storage_dir=/tmp/$(shortname "$sha")
+    if [ ! -d "$storage_dir" ]
     then
-        pick_storage_dir_and_decompress_image
-        rewrite_links_so_it_seems_we_are_mounted_on_slash_debug
+        mkdir -p "$storage_dir"
+        decompress_image "$DEBUG_IMAGE" "$storage_dir"
+        make_link_to_latest "$DEBUG_IMAGE" "$storage_dir"
     fi
 }
 
-pull_latest_image_and_get_sha() {
-    docker pull "$DEBUG_IMAGE"
-    DEBUG_IMAGE_SHA=$(docker inspect --format='{{index .RepoDigests 0}}' $DEBUG_IMAGE)
-    STORAGE_DIR="/tmp/fkdebug-$DEBUG_IMAGE_SHA"
+shortname() {
+    local image=$1
+    echo "$image" | tr '/' '-'
 }
 
-pick_storage_dir_and_decompress_image() {
-    docker save freakhill/debug -o "$STORAGE_DIR/archive.tar"
-    pushd "$STORAGE_DIR"
-    tar xf archive.tar
-    popd
-    ln -s "$STORAGE_DIR" "/tmp/freakhill-debug"
+get_image_sha() {
+    local image="$1"
+    docker inspect --format='{{index .RepoDigests 0}}' "$image"
 }
 
-rewrite_links_so_it_seems_we_are_mounted_on_slash_debug() {
-    for l in "$STORAGE"/links/*
-    do
-        local target=$(readlink -f "$l")
-        ln -s "/debug/$target" "$l"
-    done
+decompress_image() {
+    local image="$1"
+    local dir="$2"
+    docker save "$1" | \
+        ./undocker.py --ignore-errors --output "$dir"
+}
+
+make_link_to_latest() {
+    local image="$1"
+    local dir="$2"
+    local target
+    target=$(shortname "$image")
+    ln -sf "$dir" "/tmp/$target"
 }
 
 main

@@ -5,7 +5,7 @@
 # IMAGE NAME: debug
 
 FROM freakhill/guixbuilder:latest AS guixbuilder
-RUN pack /guix \
+RUN pack /guixbins \
         bash less vim emacs curl wget ncdu netcat unzip tar bzip2
 
 FROM alpine:latest

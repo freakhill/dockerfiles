@@ -5,21 +5,23 @@ set -euxo pipefail
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 main() {
-    check_we_are_mounted_on_slash_debug
-    install_path
+    link_to_root_path
+    install_path_to_env
 }
 
-check_we_are_mounted_on_slash_debug() {
-    local dir=$(readlink -f "$DIR")
-    if [ ! "$dir" = "/debug" ]
-    then
-        echo "FAIL! DEBUG VOLUME MUST BE MOUNTED ON /debug"
-        exit 1
-    fi
+
+link_to_root_path() {
+    mkdir -p /gnu/store
+    for repo in "${DIR}/gnu/store"/*
+    do
+        local target
+        target=/gnu/store/$(basename "$repo")
+        [ ! -e "$target" ] && ln -s "$repo" "$target"
+    done
 }
 
-install_path() {
-    export PATH="/debug/guix/bin:/debug/staticbins:$PATH"
+install_path_to_env() {
+    export PATH="${DIR}/guixbins:${DIR}/staticbins:$PATH"
     return 0
 }
 
