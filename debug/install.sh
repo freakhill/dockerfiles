@@ -1,8 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/sh
+
+### maybe no env... maybe no bash...
 
 set -euxo pipefail
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+# the correct following one will not work in sh...
+#DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+# all we can do is that...
+DIR=$(dirname "$0")
 
 main() {
     link_to_root_path
@@ -14,9 +19,8 @@ link_to_root_path() {
     mkdir -p /gnu/store
     for repo in "${DIR}/gnu/store"/*
     do
-        local target
-        target=/gnu/store/$(basename "$repo")
-        [ ! -e "$target" ] && ln -s "$repo" "$target"
+        TARGET=/gnu/store/$(basename "$repo")
+        [ ! -e "$TARGET" ] && ln -s "$repo" "$TARGET"
     done
 }
 

@@ -89,8 +89,7 @@ get_container_pid() {
 in_container_ns() {
     local container_pid="$1"
     shift
-    nsenter --target "$container_pid" --mount --uts --ipc --net --pid -- \
-            "${@}"
+    nsenter --target "$container_pid" --mount --uts --ipc --net --pid -- "${@}"
 }
 
 mount() {
@@ -105,7 +104,8 @@ mount() {
     local subpath
     subpath=$(realpath --relative-to "$filesystem" "$canondir")
 
-    in_container_ns "$container_pid" sh -c "[ -b $dev ] || mknod --mode 0600 $dev b $dev_mknod_encoding"
+    in_container_ns "$container_pid" sh -c "umask 0600 && mkdir -p $(dirname $dev)"
+    in_container_ns "$container_pid" sh -c "[ -b $dev ] || mknod -m 0600 $dev b $dev_mknod_encoding"
     in_container_ns "$container_pid" mkdir "$TMP_MNT_DIR"
     in_container_ns "$container_pid" mount "$dev" "$TMP_MNT_DIR"
     in_container_ns "$container_pid" mkdir -p "$path_in_container"

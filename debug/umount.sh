@@ -25,8 +25,7 @@ get_container_pid() {
 in_container_ns() {
     local container_pid="$1"
     shift
-    nsenter --target "$container_pid" --mount --uts --ipc --net --pid -- \
-            "${@}"
+    nsenter --target "$container_pid" --mount --uts --ipc --net --pid -- "${@}"
 }
 
 main "${@}"
