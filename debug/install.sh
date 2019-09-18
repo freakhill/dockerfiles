@@ -20,6 +20,9 @@ link_to_root_path() {
     for repo in "${DIR}/gnu/store"/*
     do
         TARGET=/gnu/store/$(basename "$repo")
+        # if we already have a link there remove it
+        [ -L "$TARGET" ] && rm "$TARGET"
+        # if there is no file already there, make a link to our version
         [ ! -e "$TARGET" ] && ln -s "$repo" "$TARGET"
     done
 }
