@@ -19,6 +19,7 @@ link_to_root_path() {
     mkdir -p /gnu/store
     for repo in "${DIR}/gnu/store"/*
     do
+        # locals are not supported in sh dialect, so we use a global here
         TARGET=/gnu/store/$(basename "$repo")
         # if we already have a link there remove it
         [ -L "$TARGET" ] && rm "$TARGET"
@@ -29,7 +30,7 @@ link_to_root_path() {
 
 install_path_to_env() {
     export PATH="${DIR}/guixbins:${DIR}/staticbins:$PATH"
-    return 0
+    exec bash
 }
 
 main

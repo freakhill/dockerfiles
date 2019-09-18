@@ -20,7 +20,10 @@ main() {
 
 shortname() {
     local image=$1
-    echo "$image" | tr '/' '-'
+    # ':' in path fucks up mount -o bind inside docker sometimes
+    # no time nor will to investigate why
+    # '/' is removed for the simple reason that we do not want subdirs
+    echo "$image" | tr '/:' '-_'
 }
 
 get_image_sha() {

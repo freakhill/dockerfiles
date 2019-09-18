@@ -29,8 +29,8 @@ RUN cp lnav-0.8.5/lnav /staticbins/
 ADD mount.sh /
 # run on the host to unmount the volume in the running container
 ADD unmount.sh /
-# run inside the running container to get everything running well in your shell
-ADD install.sh /
+# run inside the running container to get everything running well in a new shell
+ADD bash /
 
 # not needed, just added for reference, it's the script to download this
 # image, decompress it, and prepare it to get the generated directory
