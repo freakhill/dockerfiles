@@ -14,8 +14,8 @@ main() {
     then
         mkdir -p "$storage_dir"
         decompress_image "$DEBUG_IMAGE" "$storage_dir"
-        make_link_to_latest "$DEBUG_IMAGE" "$storage_dir"
     fi
+    make_link_to_latest "$DEBUG_IMAGE" "$storage_dir"
 }
 
 shortname() {
@@ -40,10 +40,14 @@ decompress_image() {
 
 make_link_to_latest() {
     local image="$1"
-    local dir="$2"
-    local target
-    target=$(shortname "$image")
-    ln -sf "$dir" "/tmp/$target"
+    # we create a "shortname" out of the image name to get out "shortlink"
+    local link_subdir
+    link_subdir=$(shortname "$image")
+    local link_name="/tmp/$link_subdir"
+    # target is the dir where the image is actually stored
+    local target="$2"
+    [ -L "$link_name" ] && rm "$link_name"
+    ln -s "$target" "$link_name"
 }
 
 main
