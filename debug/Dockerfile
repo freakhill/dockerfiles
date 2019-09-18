@@ -28,7 +28,7 @@ RUN cp lnav-0.8.5/lnav /staticbins/
 # run on the host to mount the volume to a running container
 ADD mount.sh /
 # run on the host to unmount the volume in the running container
-ADD unmount.sh /
+ADD umount.sh /
 # run inside the running container to get everything running well in a new shell
 ADD bash /
 
