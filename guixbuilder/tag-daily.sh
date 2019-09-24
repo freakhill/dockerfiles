@@ -4,7 +4,7 @@ set -euxo pipefail
 
 DATE=$(date +"%d-%m-%Y")
 
-cat ./DATE <<EOF
+cat <<EOF > ./DATE
 daily tag for autobuild in docker hub:
 $DATE
 EOF
