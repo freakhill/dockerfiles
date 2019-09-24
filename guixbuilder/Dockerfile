@@ -2,7 +2,7 @@
 # Image used to build guix packages and load them in other images
 # IMAGE NAME: freakhill/guix-builder
 
-FROM ubuntu:latest
+FROM ubuntu:bionic
 
 ENV GUIX_VERSION=1.0.1
 ENV GUIX_GPGKEY=3CE464558A84FDC69DB40CFB090B11993D9AEBB5
