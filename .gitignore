@@ -1,2 +1,31 @@
-*out-of-git*
-Dockerfile-e
+################################################
+# in order to prevent accidental secret pushes #
+################################################
+
+# BLACKLIST EVERYTHING
+*
+*/**
+
+# THEN WHITELIST!
+!.gitignore
+!*/**/*.md
+!*/**/*.sh
+!*/**/Dockerfile
+!*/**/DATE
+
+# BASEDEV
+!basedev
+!basedev/build
+!basedev/shell
+!basedev/start
+!basedev/**/run
+
+# GUIXBUILDER
+!guixbuilder
+!guixbuilder/pack
+
+# DEBUG
+!debug
+!debug/bash
+!debug/ddocker
+!debug/undocker.py
