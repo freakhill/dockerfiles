@@ -16,5 +16,6 @@ git add DATE
 git commit -am "daily"
 git tag "$DATE"
 git push origin --tags
+git push
 
 popd
