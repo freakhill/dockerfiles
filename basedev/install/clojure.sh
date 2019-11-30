@@ -8,3 +8,8 @@ chmod +x lein
 ./lein
 popd
 
+pushd ~/.local/bin
+curl -fsSL https://github.com/hypirion/inlein/releases/latest > inlein
+chmod +x inlein
+popd
+
