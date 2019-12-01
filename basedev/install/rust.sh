@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euxo pipefail
 
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 
