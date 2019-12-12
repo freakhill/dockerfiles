@@ -25,7 +25,8 @@ apt-get -y install \
         tldr \
         lnav \
         shellcheck \
-	libsodium-dev
+	libsodium-dev \
+        tig
 
 npm install -g serverless
 
