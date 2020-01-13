@@ -42,5 +42,5 @@ cargo install mdcat # markdown cat
 cargo install skim # (sk, sk-tmux) fuzzy finder
 cargo install chars # find utf8 chars "chars heart"
 cargo install watchexec # watch file changes
-cargo install nu --features=stable # nu shell
+#cargo install nu --features=stable # nu shell
 
