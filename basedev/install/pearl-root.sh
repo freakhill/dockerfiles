@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-apt-get install -y python3 pip3
+apt-get install -y python3
