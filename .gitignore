@@ -16,6 +16,12 @@
 # BASEDEV
 !basedev
 !basedev/install
+!basedev/packages
+!basedev/packages/emacs
+!basedev/packages/dot
+!basedev/packages/dot/tmux.conf
+!basedev/packages/dot/gitconfig
+!basedev/packages/dot/profiles.clj
 !basedev/build
 !basedev/shell
 !basedev/start
