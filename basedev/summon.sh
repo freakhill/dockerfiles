@@ -4,6 +4,7 @@ set -e
 
 dir="$HOME/.local/share/fk-dockerfiles"
 bin="$HOME/.local/bin"
+config="$HOME/.fkdockerfiles.config"
 
 mkdir -p "$dir"
 mkdir -p "$bin"
@@ -34,14 +35,22 @@ cd dockerfiles/basedev
 echo ">>> LINKING SHELL BINARY"
 ln -sf "$(pwd)/shell" "$bin/shell"
 ln -sf "$(pwd)/start" "$bin/start-fk-dev-container"
-type -a shell || cat <<EOF >> $HOME/.bashrc
 
+if ! type -a shell
+then
+	if ! grep "$config" "$HOME"/.bashrc
+	then
+	cat <<EOF >>"$HOME"/.bashrc
 ###########################################
 # from freakhill/dockerfiles.git          #
 ###########################################
-export PATH=$PATH:"$bin"
-
+source "$config"
 EOF
+	cat >"$config" <<EOF
+export PATH=\$PATH:"$bin"
+EOF
+	fi	
+fi
 
 echo ">>> BUILDING FK-DEV DOCKER IMAGE"
 ./build
