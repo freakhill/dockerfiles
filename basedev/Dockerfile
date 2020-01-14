@@ -60,7 +60,9 @@ RUN su -c "/install/zola.sh" $THE_USER
 COPY cachebuster-out-of-git /tmp
 
 ### pearl, bash package manager
+COPY install/pearl-root.sh /install
 COPY install/pearl.sh /install
+RUN /install/pearl-root.sh
 RUN su -c "/install/pearl.sh" $THE_USER
 
 # S6 SERVERS

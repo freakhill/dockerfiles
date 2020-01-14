@@ -15,6 +15,7 @@
 
 # BASEDEV
 !basedev
+!basedev/install
 !basedev/build
 !basedev/shell
 !basedev/start
