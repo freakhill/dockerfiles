@@ -18,6 +18,7 @@
 !basedev/install
 !basedev/packages
 !basedev/packages/emacs
+!basedev/packages/vivid
 !basedev/packages/dot
 !basedev/packages/dot/tmux.conf
 !basedev/packages/dot/gitconfig

@@ -3,7 +3,7 @@ post_install() {
     info "installing cask"
     curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
     # update
-    pushd "$PEARL_PKGDIR"
+    pushd "$PKGDIR"
     export PATH="$HOME/.cask/bin":$PATH
     info "installing packages"
     cask install --verbose # install new emacs packages
@@ -14,6 +14,6 @@ post_install() {
     info "deleting old emacs conf folder"
     rm -fr ~/.emacs ~/.emacs.d
     info "linking new emacs conf folder"
-    ln -s "$PEARL_PKGDIR" ~/.emacs.d
+    ln -s "$PKGDIR" ~/.emacs.d
 }
 
