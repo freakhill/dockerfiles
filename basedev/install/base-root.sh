@@ -5,8 +5,8 @@ set -e
 apt-get update
 apt-get upgrade -y
 
+apt-get install -y apt-utils
 apt-get install -y \
-	apt-utils \
         sudo \
         build-essential \
         software-properties-common \
