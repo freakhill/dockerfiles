@@ -4,14 +4,12 @@ set -euxo pipefail
 
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 
-touch $HOME/.bash_profile
-touch $HOME/.bashrc
 cat <<EOF >> $HOME/.bash_profile
 
 ####################################################
 # from install/rush.sh
-export RUST_SRC_PATH="\$HOME/.rust-git/src"
-export PATH=\$PATH:\$HOME/.cargo/bin
+export RUST_SRC_PATH="$HOME/.rust-git/src"
+export PATH=\$PATH:$HOME/.cargo/bin
 ####################################################
 
 EOF

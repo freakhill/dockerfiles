@@ -60,10 +60,5 @@ post_install() {
     mkdir -p $HOME/.lein
     rm -f $HOME/.lein/profiles.clj
     ln -s "$PKGDIR/profiles.clj" $HOME/.lein/profiles.clj
-
-    info "adding bashrc source to bash_profile for ssh"
-    printf "\n[ -f ~/.bashrc ] && source ~/.bashrc\n" >> ~/.bash_profile
-
-    idem_install
 }
 
