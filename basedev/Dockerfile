@@ -61,8 +61,8 @@ COPY cachebuster-out-of-git /tmp
 
 ### pearl, bash package manager
 COPY install/pearl-root.sh /install
-COPY install/pearl.sh /install
 RUN /install/pearl-root.sh
+COPY install/pearl.sh /install
 RUN su -c "/install/pearl.sh" $THE_USER
 
 # S6 SERVERS
