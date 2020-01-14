@@ -53,6 +53,6 @@ EOF
 
 for pkg in /install/packages/*
 do
-	install_package "$(basename "$pkg")"
+	try install_package "$(basename "$pkg")"
 done
 
