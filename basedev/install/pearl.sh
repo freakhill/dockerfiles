@@ -4,9 +4,7 @@ set -e
 
 # just installs pearl
 cd $HOME
-wget https://raw.githubusercontent.com/pearl-core/installer/master/install.sh
-bash install.sh # alreads adds pearl to bashrc
-rm install.sh
+pip install --user pearlcli
 
 cat <<EOF >> $HOME/.config/pearl/pearl.conf
 
