@@ -1,4 +1,4 @@
-#!/usr/bin env bash
+#!/usr/bin/env bash
 
 touch $HOME/.bashrc
 touch $HOME/.bash_profile
