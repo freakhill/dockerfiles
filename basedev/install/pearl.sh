@@ -4,7 +4,7 @@ set -e
 
 # just installs pearl
 cd $HOME
-pip install --user pearlcli
+pip3 install --user pearlcli
 
 cat <<EOF >> $HOME/.config/pearl/pearl.conf
 
