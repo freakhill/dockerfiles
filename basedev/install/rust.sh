@@ -4,8 +4,9 @@ set -euxo pipefail
 
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 
+touch $HOME/.bash_profile
 touch $HOME/.bashrc
-cat <<EOF >> $HOME/.bashrc
+cat <<EOF >> $HOME/.bash_profile
 
 ####################################################
 # from install/rush.sh
@@ -15,7 +16,7 @@ export PATH=\$PATH:\$HOME/.cargo/bin
 
 EOF
 
-source $HOME/.bashrc
+source $HOME/.bash_profile
 
 # https://rust-lang.github.io/rustup-components-history/
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-cat >$HOME/.bashrc <<EOF
+cat >$HOME/.bash_profile <<EOF
 
 #############################################
 ### Generated with "vivid generate molokai"
-export LS_COLORS=$(vivid generate molokai)"
+export LS_COLORS="$($HOME/.cargo/bin/vivid generate molokai)"
 #############################################
 
 EOF
