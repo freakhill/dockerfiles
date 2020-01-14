@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-apt-get install -y liquidprompt
-cargo install vivid
-
 cat >$HOME/.bashrc <<EOF
 
 #############################################
@@ -23,7 +20,6 @@ info() {
 }
 
 try() {
-	echo "##################################"
 	echo "## try: $@"
 	if $@
 	then
@@ -31,7 +27,6 @@ try() {
 	else
 		echo "[FAIL] $@"
 	fi
-	echo "##################################"
 }
 
 install_package() {
@@ -58,6 +53,6 @@ EOF
 
 for pkg in /install/packages/*
 do
-	install_package "$pkg"
+	install_package "$(basename "$pkg")"
 done
 
