@@ -3,11 +3,11 @@
 BASE_PKGVARDIR="$HOME/.pkgvardir"
 BASE_PKGDIR="$HOME/.pkgdir"
 
-mkdir -p "$PKGVARDIR"
-mkdir -p "$PKGDIR"
+mkdir -p "$BASE_PKGVARDIR"
+mkdir -p "$BASE_PKGDIR"
 
 info() {
-	echo ">> $@"
+	echo ">>[info]: $@"
 }
 
 try() {
