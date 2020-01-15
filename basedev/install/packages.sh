@@ -32,16 +32,45 @@ install_package() {
 	try install
 	try post_install
 	popd
-	cat >>"$HOME"/.bashrc <<EOF
+	cat >>"$HOME"/.bash_profile <<EOF
 
 #######################################
 ## config for package $pkg
-[ -f "$PKGDIR/config.sh ] && "source "$PKGDIR/config.sh"
+if [ -f "$PKGDIR/config.sh" ]
+then
+  export PKGDIR="$PKGDIR"
+  export PKGVARDIR="$PKGVARDIR"
+  source "$PKGDIR/config.sh"
+fi
 #######################################
 
 EOF
 }
 
+install_runtime() {
+	cat >>$HOME/.bash_profile <<EOF
+
+#######################################
+## exports for packages
+info() {
+	echo ">>[info]: $@"
+}
+
+try() {
+	echo "## try: $@"
+	if $@
+	then
+		echo "[OK] $@"
+	else
+		echo "[FAIL] $@"
+	fi
+}
+#######################################
+
+EOF
+}
+
+install_runtime
 for pkg in /install/packages/*
 do
 	try install_package "$(basename "$pkg")"
