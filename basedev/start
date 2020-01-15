@@ -18,8 +18,8 @@ esac
 
 NAME="fkdev"
 
-$sudo docker stop "$NAME" &2>/dev/null && sleep 5 || true
-$sudo docker rm "$NAME" &2>/dev/null && sleep 5 || true
+#$sudo docker stop "$NAME" &2>/dev/null && sleep 5 || true
+#$sudo docker rm "$NAME" &2>/dev/null && sleep 5 || true
 $sudo docker run -d \
       --privileged \
       --name "$NAME" \
