@@ -22,8 +22,8 @@ try() {
 
 install_package() {
 	local pkg="$1"
-	export PKGDIR="$BASE_PKGDIR/$1"
-	export PKGVARDIR="$BASE_PKGVARDIR/$1"
+	local PKGDIR="$BASE_PKGDIR/$1"
+	local PKGVARDIR="$BASE_PKGVARDIR/$1"
 	cp -r "/install/packages/$1" "$PKGDIR"
 	mkdir -p "$PKGVARDIR"
 	pushd "$PKGDIR"
