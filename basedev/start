@@ -18,11 +18,11 @@ esac
 
 NAME="fkdev"
 
-$sudo docker stop "$NAME"
-$sudo docker rm "$NAME"
+$sudo docker stop "$NAME" &2>/dev/null || true
+$sudo docker rm "$NAME" &2>/dev/null || true
 $sudo docker run -d \
       --privileged \
-      --name "$NAME \
+      --name "$NAME" \
       -h "$NAME" \
       -p 10022:10022 \
       -p 22000-22099:22000-22099/udp \
