@@ -4,8 +4,6 @@ export GOPATH="$HOME/.go"
 export PATH="$PATH:$HOME/.local/bin:/opt/guixpack/bin:$GOPATH/bin"
 export LD_LIBRARY_PATH="$HOME/.local/lib${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH"
 
-eval "$(fasd --init auto)"
-
 [[ $- = *i* ]] && source $PKGVARDIR/freakhill/scripts/lib/ssh_completion
 [[ $- = *i* ]] && source $PKGVARDIR/freakhill/scripts/lib/git_completion
 [[ $- = *i* ]] && source $PKGVARDIR/freakhill/scripts/lib/srsh_completion

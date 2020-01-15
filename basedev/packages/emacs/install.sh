@@ -16,4 +16,3 @@ post_install() {
     info "linking new emacs conf folder"
     ln -s "$PKGDIR" ~/.emacs.d
 }
-

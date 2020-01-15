@@ -36,11 +36,24 @@ install_package() {
 
 #######################################
 ## config for package $pkg
-if [ -f "$PKGDIR/config.sh" ]
+if [ -f "$PKGDIR/profile.sh" ]
 then
   export PKGDIR="$PKGDIR"
   export PKGVARDIR="$PKGVARDIR"
-  source "$PKGDIR/config.sh"
+  source "$PKGDIR/profile.sh"
+fi
+#######################################
+
+EOF
+	cat >>"$HOME"/.bashrc <<EOF
+
+#######################################
+## config for package $pkg
+if [ -f "$PKGDIR/rc.sh" ]
+then
+  export PKGDIR="$PKGDIR"
+  export PKGVARDIR="$PKGVARDIR"
+  source "$PKGDIR/rc.sh"
 fi
 #######################################
 
