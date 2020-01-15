@@ -53,16 +53,16 @@ install_runtime() {
 #######################################
 ## exports for packages
 info() {
-	echo ">>[info]: $@"
+	echo ">>[info]: \$@"
 }
 
 try() {
-	echo "## try: $@"
-	if $@
+	echo "## try: \$@"
+	if \$@
 	then
-		echo "[OK] $@"
+		echo "[OK] \$@"
 	else
-		echo "[FAIL] $@"
+		echo "[FAIL] \$@"
 	fi
 }
 #######################################
