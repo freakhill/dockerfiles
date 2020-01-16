@@ -21,6 +21,7 @@ try() {
 }
 
 install_package() {
+	set -ux
 	local pkg="$1"
 	local PKGDIR="$BASE_PKGDIR/$1"
 	local PKGVARDIR="$BASE_PKGVARDIR/$1"
