@@ -13,8 +13,8 @@ FROM ubuntu:latest
 
 RUN mkdir /build /install
 
-ENV THE_USER=JP11629
-ENV THE_UID=502
+ENV THE_USER=johan
+ENV THE_UID=1000
 
 # PACKAGES
 ## BASE

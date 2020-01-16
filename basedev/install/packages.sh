@@ -21,13 +21,15 @@ try() {
 }
 
 install_package() {
-	set -ux
 	local pkg="$1"
 	local PKGDIR="$BASE_PKGDIR/$1"
 	local PKGVARDIR="$BASE_PKGVARDIR/$1"
 	cp -r "/install/packages/$1" "$PKGDIR"
 	mkdir -p "$PKGVARDIR"
 	pushd "$PKGDIR"
+	unset pre_install
+	unset install
+	unset post_install
 	source ./install.sh
 	try pre_install
 	try install
