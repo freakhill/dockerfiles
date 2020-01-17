@@ -26,9 +26,14 @@ apt-get -y install \
         lnav \
         shellcheck \
 	libsodium-dev \
-        tig
+        tig \
+	liquidprompt
 
 npm install -g serverless
+
+# vivid, for ls-colors
+wget "https://github.com/sharkdp/vivid/releases/download/v0.5.0/vivid_0.5.0_amd64.deb"
+dpkg -i vivid_0.5.0_amd64.deb
 
 # used by zola
 apt-get install -y libssl-dev libsass-dev pkg-config

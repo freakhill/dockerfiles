@@ -1,0 +1,5 @@
+[user]
+	email = johan.gall@gmail.com
+	name = Johan Gall
+[push]
+	default = simple

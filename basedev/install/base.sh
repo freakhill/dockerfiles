@@ -1,21 +1,14 @@
 #!/usr/bin/env bash
 
-set -e
+touch $HOME/.bashrc
+touch $HOME/.bash_profile
 
-apt-get update
-apt-get upgrade -y
+cat >>"$HOME/.bash_profile" << EOF
 
-apt-get install -y \
-        sudo \
-        build-essential \
-        software-properties-common \
-        git-core wget curl coreutils unzip xz-utils \
-	locales
+#####################################
+## Base
+source "$HOME/.bashrc"
+#####################################
 
-locale-gen en_US.UTF-8
-locale-gen ja_JP.UTF-8
-locale-gen ko_KR.UTF-8
-locale-gen fr_FR.UTF-8
-locale-gen zh_CN.UTF-8
-locale-gen th_TH.UTF-8
+EOF
 

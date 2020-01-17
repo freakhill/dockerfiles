@@ -13,8 +13,8 @@ FROM ubuntu:latest
 
 RUN mkdir /build /install
 
-ENV THE_USER=JP11629
-ENV THE_UID=502
+ENV THE_USER=johan
+ENV THE_UID=1000
 
 # PACKAGES
 ## BASE
@@ -22,8 +22,10 @@ ENV THE_UID=502
 COPY install/user.sh /install
 RUN /install/user.sh
 ### base
+COPY install/base-root.sh /install
+RUN /install/base-root.sh
 COPY install/base.sh /install
-RUN /install/base.sh
+RUN su -c "/install/base.sh" $THE_USER
 ### sshd
 COPY ssh-out-of-git /ssh
 COPY install/sshd.sh /install
@@ -55,13 +57,10 @@ RUN su -c "/install/rust.sh" $THE_USER
 # zola
 COPY install/zola.sh /install
 RUN su -c "/install/zola.sh" $THE_USER
-
-# cache bust!
-COPY cachebuster-out-of-git /tmp
-
-### pearl, bash package manager
-COPY install/pearl.sh /install
-RUN su -c "/install/pearl.sh" $THE_USER
+# pearl packages ran manually
+COPY packages /install/packages
+COPY install/packages.sh /install
+RUN su -c "/install/packages.sh" $THE_USER
 
 # S6 SERVERS
 COPY servers /servers

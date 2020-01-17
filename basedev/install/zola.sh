@@ -2,7 +2,7 @@
 
 set -e
 
-source $HOME/.bashrc
+source $HOME/.bash_profile
 cd /install
 git clone git@github.com:getzola/zola
 cd ./zola
