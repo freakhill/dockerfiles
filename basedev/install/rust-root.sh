@@ -6,4 +6,5 @@ apt -y install build-essential pandoc poppler-utils ffmpeg
 apt -y install libssl-dev
 # for mdcat (for onig-sys crate})
 apt-get -y install llvm clang
-
+# for nu
+apt-get -y install libxcb-render0-dev libxcb-shape0-dev lixcb-xfixes0-dev
