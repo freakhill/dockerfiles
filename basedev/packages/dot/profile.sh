@@ -19,3 +19,12 @@ export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file s
 
 alias ll='ls -lG --color'
 alias lla='ll -a'
+
+function clj() {
+    if [[ -z "$*" ]]
+    then
+        command clojure -A:repl
+    else
+        command clj "$@"
+    fi
+}

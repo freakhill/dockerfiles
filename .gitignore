@@ -26,6 +26,8 @@
 !basedev/packages/dot/tmux.conf
 !basedev/packages/dot/gitconfig
 !basedev/packages/dot/profiles.clj
+!basedev/packages/dot/user.clj
+!basedev/packages/dot/deps.edn
 !basedev/build
 !basedev/shell
 !basedev/start

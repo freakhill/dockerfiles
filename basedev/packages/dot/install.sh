@@ -28,8 +28,9 @@ install_from_github() {
 }
 
 post_install() {
-    mkdir -p $HOME/.local/{bin,etc,run,lib,share,var/log}
-    mkdir -p $HOME/.go
+    mkdir -p "$HOME"/.local/{bin,etc,run,lib,share,var/log}
+    mkdir -p "$HOME"/.go
+    mkdir -p "$HOME"/.clojure
 
     for pkg in `packages_from_github`
     do
@@ -40,25 +41,28 @@ post_install() {
     ( $PKGVARDIR/junegunn/fzf/install --key-bindings --completion --no-update-rc)
 
     info "make sur that our homemade ssh/scp scripts run fine"
-    mkdir -p $HOME/.ssh/config.0
-    mkdir -p $HOME/.ssh/backups
-    touch $HOME/.ssh/config.0/empty
-    touch $HOME/.ssh/settings
-    touch $HOME/.ssh/config
-    chmod 600 $HOME/.ssh/config
+    mkdir -p "$HOME"/.ssh/config.0
+    mkdir -p "$HOME"/.ssh/backups
+    touch "$HOME"/.ssh/config.0/empty
+    touch "$HOME"/.ssh/settings
+    touch "$HOME"/.ssh/config
+    chmod 600 "$HOME"/.ssh/config
 
-    [ "$(ls -A $HOME/.ssh/config.0)" ] && info "config.0 not empty" \
-            || cp $HOME/.ssh/config $HOME/.ssh/config.0/oldconfig
+    [ "$(ls -A "$HOME"/.ssh/config.0)" ] && info "config.0 not empty" \
+            || cp "$HOME"/.ssh/config "$HOME"/.ssh/config.0/oldconfig
 
     info "link tmux and git config"
-    rm -f $HOME/.tmux.conf
-    ln -s "$PKGDIR/tmux.conf" $HOME/.tmux.conf
+    rm -f "$HOME"/.tmux.conf
+    ln -s "$PKGDIR"/tmux.conf "$HOME"/.tmux.conf
     info "link git config"
-    rm -f $HOME/.gitconfig
-    ln -s "$PKGDIR/gitconfig" $HOME/.gitconfig
+    rm -f "$HOME"/.gitconfig
+    ln -s "$PKGDIR"/gitconfig "$HOME"/.gitconfig
     info "link lein profile"
-    mkdir -p $HOME/.lein
-    rm -f $HOME/.lein/profiles.clj
-    ln -s "$PKGDIR/profiles.clj" $HOME/.lein/profiles.clj
+    mkdir -p "$HOME"/.lein
+    rm -f "$HOME"/.lein/profiles.clj
+    ln -s "$PKGDIR/profiles.clj" "$HOME"/.lein/profiles.clj
+    info "link clojure config"
+    rm -f "$HOME"/.clojure/{user.clj,deps.edn}
+    ln -s "$PKGDIR"/user.clj "$HOME"/.clojure/user.clj
+    ln -s "$PKGDIR"/deps.edn "$HOME"/.clojure/deps.edn
 }
-
