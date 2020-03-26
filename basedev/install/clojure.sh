@@ -13,3 +13,10 @@ curl -fsSL https://github.com/hypirion/inlein/releases/latest > inlein
 chmod +x inlein
 popd
 
+
+pushd ~/.local/bin
+BB=babashka-0.0.78-linux-static-amd64.zip
+wget https://github.com/borkdude/babashka/releases/download/v0.0.78/$BB
+unzip $BB
+rm $BB
+popd
