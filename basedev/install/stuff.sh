@@ -10,4 +10,4 @@ pip install --user awscli
 #cargo install rsign
 
 # CSV,JSON,Redis,Mysql,PostgreSQL querying with SQL
-GO111MODULE=on go get -u github.com/cube2222/octosql/cmd/octosql
+#GO111MODULE=on go get -u github.com/cube2222/octosql/cmd/octosql
