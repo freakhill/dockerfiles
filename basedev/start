@@ -9,14 +9,14 @@ case $OSTYPE in
     ;;
 esac
 
-#if type -a bc
-#then
-#    random_token=$(echo "obase=16; $RANDOM" | bc)
-#else
-#    random_token=$RANDOM
-#fi
+if type -a bc
+then
+    random_token=$(echo "obase=16; $RANDOM" | bc)
+else
+    random_token=$RANDOM
+fi
 
-NAME="fkdev"
+NAME="fkdev-$RANDOM"
 
 #$sudo docker stop "$NAME" &2>/dev/null && sleep 5 || true
 #$sudo docker rm "$NAME" &2>/dev/null && sleep 5 || true
