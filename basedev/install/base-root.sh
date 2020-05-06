@@ -2,8 +2,14 @@
 
 set -e
 
+export DEBIAN_FRONTEND=noninteractive
+
 apt-get update
 apt-get upgrade -y
+
+ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+apt-get install -y tzdata
+dpkg-reconfigure --frontend noninteractive tzdata
 
 apt-get install -y apt-utils
 apt-get install -y \
