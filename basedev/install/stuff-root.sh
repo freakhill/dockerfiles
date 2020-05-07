@@ -8,7 +8,7 @@ apt-get update
 # apt-get install software-properties-common
 # apt-add-repository universe
 # apt-get update
-apt-get install -y python3 python3-pip
+apt-get install -y python2 python2-pip python3 python3-pip
 
 apt-get -y install \
         nodejs \
