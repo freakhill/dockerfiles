@@ -10,7 +10,8 @@ ARG ARCH=x86_64
 FROM freakhill/guixbuilder:$ARCH AS guixbuilder
 RUN pack /opt/guixpack/bin s6 s6-rc s6-dns s6-networking
 
-FROM ubuntu:latest
+#FROM ubuntu:latest
+FROM ubuntu:eoan
 
 RUN mkdir /build /install
 
