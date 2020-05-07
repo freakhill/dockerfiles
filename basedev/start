@@ -3,6 +3,19 @@
 case $OSTYPE in
   darwin*)
     sudo=
+    VOLUME_OPTS=":delegated"
+    ;;
+  linux-gnu*)
+    sudo=sudo
+    ;;
+  cygwin)
+    sudo=sudo
+    ;;
+  msys)
+    sudo=sudo
+    ;;
+  win32)
+    sudo=sudo
     ;;
   *)
     sudo=sudo
@@ -28,6 +41,6 @@ $sudo docker run -d \
       -p 22000-22099:22000-22099/udp \
       -p 21000-21099:21000-21099/tcp \
       -p 8000-8100:8000-8100/tcp \
-      -v "$HOME":/m \
+      -v "$HOME":/m$VOLUME_OPTS \
       -v /:/host \
       freakhill-dev
