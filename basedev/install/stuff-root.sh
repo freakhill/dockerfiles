@@ -4,12 +4,17 @@ set -e
 
 apt-get update
 
+# python pip...
+# apt-get install software-properties-common
+# apt-add-repository universe
+# apt-get update
+apt-get install python3 python3-pip
+
 apt-get -y install \
         nodejs \
         npm \
         ssh \
         ncdu \
-        python \
         golang \
         vim \
         tmux \
@@ -28,11 +33,6 @@ apt-get -y install \
         tig \
 	liquidprompt
 
-# python pip...
-apt-get install software-properties-common
-apt-add-repository universe
-apt-get update
-apt-get install python-pip
 
 npm install -g serverless
 
