@@ -33,8 +33,8 @@ apt-get -y install \
         tig \
 	liquidprompt
 
-
-npm install -g serverless
+# serverless install fails for now so let's just skip it for now
+# npm install -g serverless
 
 # vivid, for ls-colors
 wget "https://github.com/sharkdp/vivid/releases/download/v0.5.0/vivid_0.5.0_amd64.deb"
