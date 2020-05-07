@@ -6,10 +6,9 @@ set -e
 
 # python pip...
 apt-get install software-properties-common
-sudo add-apt-repository universe
-sudo add-apt-repository multiverse
-sudo add-apt-repository restricted
-apt-add-repository universe
+add-apt-repository universe
+add-apt-repository multiverse
+add-apt-repository restricted
 apt-get update
 apt-get install -y python2 python-pip python3 python3-pip
 
