@@ -5,10 +5,10 @@ set -e
 # apt-get update
 
 # python pip...
-apt-get install software-properties-common
-add-apt-repository universe
-add-apt-repository multiverse
-add-apt-repository restricted
+apt-get install -y software-properties-common
+add-apt-repository -y universe
+add-apt-repository -y multiverse
+add-apt-repository -y restricted
 apt-get update
 apt-get install -y python2 python-pip python3 python3-pip
 
