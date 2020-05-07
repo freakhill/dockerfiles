@@ -10,7 +10,6 @@ apt-get -y install \
         ssh \
         ncdu \
         python \
-        python-pip \
         golang \
         vim \
         tmux \
@@ -28,6 +27,12 @@ apt-get -y install \
 	libsodium-dev \
         tig \
 	liquidprompt
+
+# python pip...
+apt-get install software-properties-common
+apt-add-repository universe
+apt-get update
+apt-get install python-pip
 
 npm install -g serverless
 
