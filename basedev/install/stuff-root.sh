@@ -2,13 +2,16 @@
 
 set -e
 
-apt-get update
+# apt-get update
 
 # python pip...
-# apt-get install software-properties-common
-# apt-add-repository universe
-# apt-get update
-apt-get install -y python2 python2-pip python3 python3-pip
+apt-get install software-properties-common
+sudo add-apt-repository universe
+sudo add-apt-repository multiverse
+sudo add-apt-repository restricted
+apt-add-repository universe
+apt-get update
+apt-get install -y python2 python-pip python3 python3-pip
 
 apt-get -y install \
         nodejs \
