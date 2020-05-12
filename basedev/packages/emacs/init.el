@@ -23,7 +23,12 @@
  '(package-selected-packages
    (quote
     (projectile-ripgrep company-restclient dap-mode ansi hide-mode-line lsp-rust package-build shut-up epl git commander f dash s)))
- '(safe-local-variable-values (quote ((c-basic-indent . 4))))
+ '(safe-local-variable-values
+   (quote
+    ((cider-known-endpoints
+      ("verda-vm" "jojo-work-from-home001-gcld-jp2v-prod.lineinfra.com" "9998")
+      ("dockerhost" "host.docker.internal" "9998"))
+     (c-basic-indent . 4))))
  '(semantic-mode t)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
 (custom-set-faces
@@ -540,7 +545,8 @@
   (global-set-key (kbd "C-x C-f" ) 'counsel-find-file)
 
   (projectile-global-mode)
-  (setq projectile-completion-system 'grizzl)
+  ;; (setq projectile-completion-system 'grizzl)
+  (setq projectile-completion-system 'ivy)
   (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths))
 
 (defun my-undo-tree ()
@@ -611,12 +617,13 @@
   (dap-node-setup))
 
 (defun my-lsp ()
-  (require 'lsp-mode)
-  (require 'lsp-ui)
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (add-hook 'lsp-mode-hook 'company-lsp)
-  (add-hook 'lsp-mode-hook 'lsp-treemacs)
-  (add-hook 'rust-mode-hook 'flycheck-mode)
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode)
+  (use-package company-lsp
+    :ensure t
+    :commands company-lsp)
+  (lsp-treemacs-sync-mode 1)
   (push 'company-lsp company-backends))
 
 (defun my-rust ()
@@ -741,7 +748,18 @@
   (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))\")\"")
   (setq cider-lein-parameters "repl :headless :host localhost")
   ;; remove the cider bind that overshadows the git messenger bind
-  (local-unset-key (kbd "C-c M-c")))
+  (local-unset-key (kbd "C-c M-c"))
+  ;; setup clojure-lsp
+  (dolist (m '(clojure-mode
+               clojurec-mode
+               clojurescript-mode
+               clojurex-mode))
+    (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))
+    (add-hook m 'lsp))
+  (with-eval-after-load 'lsp-mode
+    (setq
+     lsp-enable-indentation nil
+     lsp-clojure-server-command '("bash" "-c" "clojure-lsp"))))
 
 (defun my-lisp ()
   ;; all non clojure lisps
