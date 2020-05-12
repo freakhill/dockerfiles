@@ -20,3 +20,8 @@ wget https://github.com/borkdude/babashka/releases/download/v0.0.78/$BB
 unzip $BB
 rm $BB
 popd
+
+pushd ~/.local/bin
+wget https://github.com/snoe/clojure-lsp/releases/download/release-20200511T135432/clojure-lsp
+chmod 755 clojure-lsp
+popd
