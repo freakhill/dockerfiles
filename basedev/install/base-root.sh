@@ -4,6 +4,10 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
+# so we get manpages
+unminimize -y
+
+# and now let's go
 apt-get update
 apt-get upgrade -y
 
