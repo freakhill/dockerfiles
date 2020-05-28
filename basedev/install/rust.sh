@@ -22,6 +22,7 @@ source $HOME/.bash_profile
 #rustup set profile complete
 rustup set profile default
 rustup toolchain install nightly
+rustup toolchain install beta
 rustup default stable
 
 rustup completions bash >> $HOME/.bash-completion
