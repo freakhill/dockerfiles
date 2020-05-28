@@ -22,13 +22,13 @@ source $HOME/.bash_profile
 #rustup set profile complete
 rustup set profile default
 rustup toolchain install nightly
-rustup default nightly
+rustup default stable
 
 rustup completions bash >> $HOME/.bash-completion
 
 git clone https://github.com/rust-lang/rust.git $HOME/.rust-git
 cd $HOME/.rust-git
-git checkout beta
+git checkout stable
 
 cargo install racer
 cargo install ripgrep # better grep
