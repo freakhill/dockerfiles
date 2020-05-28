@@ -5,7 +5,8 @@ set -e
 export DEBIAN_FRONTEND=noninteractive
 
 # so we get manpages
-echo "-y\n" | unminimize -y
+#echo "y\n" | unminimize -y
+unminimize -y
 
 # and now let's go
 apt-get update
