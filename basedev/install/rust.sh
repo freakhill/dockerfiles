@@ -31,7 +31,8 @@ git clone https://github.com/rust-lang/rust.git $HOME/.rust-git
 cd $HOME/.rust-git
 git checkout stable
 
-cargo +beta install racer
+# racer build is fucked for now...
+# cargo +nightly install racer
 cargo install ripgrep # better grep
 # cargo install bat # cat for source code
 cargo install exa # better ls
