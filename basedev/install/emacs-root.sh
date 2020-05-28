@@ -5,4 +5,5 @@
 #apt-get install -y emacs26
 add-apt-repository ppa:ubuntu-elisp/ppa
 apt-get update -y
+export DEBIAN_FRONTEND=noninteractive
 apt-get install -y emacs-snapshot
