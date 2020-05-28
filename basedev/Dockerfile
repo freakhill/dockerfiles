@@ -41,6 +41,8 @@ RUN /install/stuff-root.sh
 COPY install/stuff.sh /install
 RUN su -c "/install/stuff.sh" $THE_USER
 ### emacs
+COPY install/snap-root.sh /install
+RUN /install/snap-root.sh
 COPY install/emacs-root.sh /install
 RUN /install/emacs-root.sh
 ### aws rds certificates
