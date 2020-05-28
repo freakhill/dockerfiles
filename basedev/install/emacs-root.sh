@@ -3,5 +3,5 @@
 #add-apt-repository ppa:kelleyk/emacs
 #apt-get update -y
 #apt-get install -y emacs26
-service snapd start
+service snap start
 snap install emacs --beta --classic
