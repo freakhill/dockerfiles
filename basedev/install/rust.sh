@@ -30,7 +30,7 @@ git clone https://github.com/rust-lang/rust.git $HOME/.rust-git
 cd $HOME/.rust-git
 git checkout stable
 
-cargo install racer
+cargo +nightly install racer
 cargo install ripgrep # better grep
 # cargo install bat # cat for source code
 cargo install exa # better ls
