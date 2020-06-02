@@ -36,6 +36,7 @@ NAME="fkdev-$RANDOM"
 $sudo docker run -d \
       --privileged \
       --name "$NAME" \
+      --label jojomachine=true \
       -h "$NAME" \
       -p 10022:10022 \
       -p 22000-22099:22000-22099/udp \
