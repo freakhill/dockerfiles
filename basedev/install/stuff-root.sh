@@ -60,3 +60,8 @@ apt-get -y install openjdk-11-jdk
 
 # 2. Re-add all the CA certs into the previously empty file.
 /var/lib/dpkg/info/ca-certificates-java.postinst configure
+
+# prompt
+
+curl -fsSL https://starship.rs/install.sh | bash -s -- -y
+
