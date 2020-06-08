@@ -32,8 +32,8 @@ apt-get -y install \
         lnav \
         shellcheck \
 	libsodium-dev \
-        tig \
-	liquidprompt
+        tig
+# liquidprompt
 
 # serverless install fails for now so let's just skip it for now
 npm install -g serverless

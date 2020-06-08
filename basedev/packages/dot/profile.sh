@@ -1,4 +1,5 @@
-source "/usr/share/liquidprompt/liquidprompt"
+# deactivate liquidprompt, too slow...
+# source "/usr/share/liquidprompt/liquidprompt"
 
 export GOPATH="$HOME/.go"
 export PATH="$PATH:$HOME/.local/bin:/opt/guixpack/bin:$GOPATH/bin"
