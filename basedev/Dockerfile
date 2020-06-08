@@ -6,15 +6,17 @@
 
 ##################################################
 
-FROM freakhill/guixbuilder:latest AS guixbuilder
+ARG ARCH=x86_64
+FROM freakhill/guixbuilder:$ARCH AS guixbuilder
 RUN pack /opt/guixpack/bin s6 s6-rc s6-dns s6-networking
 
-FROM ubuntu:latest
+#FROM ubuntu:latest
+FROM ubuntu:eoan
 
 RUN mkdir /build /install
 
-ENV THE_USER=johan
-ENV THE_UID=1000
+ENV THE_USER=JP11629
+ENV THE_UID=502
 
 # PACKAGES
 ## BASE

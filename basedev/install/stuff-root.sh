@@ -2,15 +2,21 @@
 
 set -e
 
+# apt-get update
+
+# python pip...
+apt-get install -y software-properties-common
+add-apt-repository -y universe
+add-apt-repository -y multiverse
+add-apt-repository -y restricted
 apt-get update
+apt-get install -y python2 python-pip python3 python3-pip
 
 apt-get -y install \
         nodejs \
         npm \
         ssh \
         ncdu \
-        python \
-        python-pip \
         golang \
         vim \
         tmux \
@@ -29,6 +35,7 @@ apt-get -y install \
         tig \
 	liquidprompt
 
+# serverless install fails for now so let's just skip it for now
 npm install -g serverless
 
 # vivid, for ls-colors

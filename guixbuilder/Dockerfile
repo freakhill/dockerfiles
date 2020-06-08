@@ -4,6 +4,7 @@
 
 FROM ubuntu:bionic
 
+ARG ARCH=x86_64
 ENV GUIX_VERSION=1.0.1
 ENV GUIX_GPGKEY=3CE464558A84FDC69DB40CFB090B11993D9AEBB5
 
@@ -14,13 +15,13 @@ RUN mkdir ~/.gnupg                                      \
         && echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf \
         && gpg --keyserver pool.sks-keyservers.net --recv-keys $GUIX_GPGKEY
 ### download and check
-RUN mkdir -p /build/guix                                                                       \
-        && cd /build/guix                                                                      \
-        && wget https://ftp.gnu.org/gnu/guix/guix-binary-$GUIX_VERSION.x86_64-linux.tar.xz     \
-        && wget https://ftp.gnu.org/gnu/guix/guix-binary-$GUIX_VERSION.x86_64-linux.tar.xz.sig
+RUN mkdir -p /build/guix                                                                      \
+        && cd /build/guix                                                                     \
+        && wget https://ftp.gnu.org/gnu/guix/guix-binary-$GUIX_VERSION.$ARCH-linux.tar.xz     \
+        && wget https://ftp.gnu.org/gnu/guix/guix-binary-$GUIX_VERSION.$ARCH-linux.tar.xz.sig
 WORKDIR /build/guix
-RUN gpg --verify guix-binary-$GUIX_VERSION.x86_64-linux.tar.xz.sig
-RUN bsdtar -xf guix-binary-$GUIX_VERSION.x86_64-linux.tar.xz && mv var/guix /var/ && mv gnu /
+RUN gpg --verify guix-binary-$GUIX_VERSION.$ARCH-linux.tar.xz.sig
+RUN bsdtar -xf guix-binary-$GUIX_VERSION.$ARCH-linux.tar.xz && mv var/guix /var/ && mv gnu /
 WORKDIR /
 ### finish the setup
 ### this is run from docker hub, so we need full repo paths...

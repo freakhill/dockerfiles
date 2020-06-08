@@ -3,31 +3,45 @@
 case $OSTYPE in
   darwin*)
     sudo=
+    VOLUME_OPTS=":delegated"
+    ;;
+  linux-gnu*)
+    sudo=sudo
+    ;;
+  cygwin)
+    sudo=sudo
+    ;;
+  msys)
+    sudo=sudo
+    ;;
+  win32)
+    sudo=sudo
     ;;
   *)
     sudo=sudo
     ;;
 esac
 
-#if type -a bc
-#then
-#    random_token=$(echo "obase=16; $RANDOM" | bc)
-#else
-#    random_token=$RANDOM
-#fi
+if type -a bc
+then
+    random_token=$(echo "obase=16; $RANDOM" | bc)
+else
+    random_token=$RANDOM
+fi
 
-NAME="fkdev"
+NAME="fkdev-$RANDOM"
 
 #$sudo docker stop "$NAME" &2>/dev/null && sleep 5 || true
 #$sudo docker rm "$NAME" &2>/dev/null && sleep 5 || true
 $sudo docker run -d \
       --privileged \
       --name "$NAME" \
+      --label jojomachine=true \
       -h "$NAME" \
       -p 10022:10022 \
       -p 22000-22099:22000-22099/udp \
       -p 21000-21099:21000-21099/tcp \
       -p 8000-8100:8000-8100/tcp \
-      -v "$HOME":/m \
+      -v "$HOME":/m$VOLUME_OPTS \
       -v /:/host \
       freakhill-dev
