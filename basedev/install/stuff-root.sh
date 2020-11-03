@@ -32,7 +32,8 @@ apt-get -y install \
         lnav \
         shellcheck \
 	libsodium-dev \
-        tig
+        tig \
+        httpie
 # liquidprompt
 
 # serverless install fails for now so let's just skip it for now
@@ -71,4 +72,3 @@ apt-get -y install openjdk-11-jdk
 # prompt
 
 curl -fsSL https://starship.rs/install.sh | bash -s -- -y
-
