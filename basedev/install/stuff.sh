@@ -11,3 +11,4 @@ pip install --user awscli
 
 # CSV,JSON,Redis,Mysql,PostgreSQL querying with SQL
 #GO111MODULE=on go get -u github.com/cube2222/octosql/cmd/octosql
+go get -u github.com/hashrockt/ws
