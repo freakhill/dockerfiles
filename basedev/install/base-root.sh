@@ -9,7 +9,6 @@ yes | unminimize
 
 # and now let's go
 apt-get update
-apt-get upgrade -y
 
 ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 apt-get install -y tzdata
