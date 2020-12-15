@@ -17,14 +17,22 @@ trap finish EXIT
 
 if [[ $OSTYPE =~ "darwin" ]]
 then
-  echo "MacOS type build."
+  echo "MacOS build."
   SUDO()
   {
 	$*
   }
   sed="sed -i -e"
+elif dmesg | grep Msft
+then
+  echo "Linux VM in Windows build."
+  SUDO()
+  {
+	  $*
+  }
+  sed="sed -i"
 else
-  echo "Default type build."
+	echo "Default linux build."
   SUDO()
   {
 	sudo -E PATH="$PATH" $*

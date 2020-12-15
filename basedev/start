@@ -9,10 +9,18 @@ case $OSTYPE in
     VOLUME_OPTS=":delegated"
     ;;
   linux-gnu*)
-	  SUDO()
-	  {
-		  sudo -E PATH="$PATH" $*
-	  }
+	  if dmsg | grep Msft
+	  then
+		  SUDO()
+		  {
+			  $*
+		  }
+	  else
+		  SUDO()
+	  	{
+			  sudo -E PATH="$PATH" $*
+	  	}
+  	fi
     ;;
   cygwin)
 	  SUDO()
