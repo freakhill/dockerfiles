@@ -18,11 +18,17 @@ trap finish EXIT
 if [[ $OSTYPE =~ "darwin" ]]
 then
   echo "MacOS type build."
-  sudo=
+  SUDO()
+  {
+	$*
+  }
   sed="sed -i -e"
 else
   echo "Default type build."
-  sudo=sudo
+  SUDO()
+  {
+	sudo -E PATH="$PATH" $*
+  }
   sed="sed -i"
 fi
 
@@ -35,8 +41,8 @@ date > cachebuster-out-of-git
 $sed "s/ENV THE_USER=.*/ENV THE_USER=$USER/" ./Dockerfile
 $sed "s/ENV THE_UID=.*/ENV THE_UID=$UID/" ./Dockerfile
 
-$sudo docker pull ubuntu
+SUDO docker pull ubuntu
 cp -r $HOME/.ssh ./ssh-out-of-git
-$sudo docker build -t freakhill-dev ./
+SUDO docker build -t freakhill-dev ./
 
 echo "COMPLETE!"

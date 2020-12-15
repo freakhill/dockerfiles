@@ -2,23 +2,41 @@
 
 case $OSTYPE in
   darwin*)
-    sudo=
+	  SUDO()
+	  {
+		  $*
+	  }
     VOLUME_OPTS=":delegated"
     ;;
   linux-gnu*)
-    sudo=sudo
+	  SUDO()
+	  {
+		  sudo -E PATH="$PATH" $*
+	  }
     ;;
   cygwin)
-    sudo=sudo
+	  SUDO()
+	  {
+		  $*
+	  }
     ;;
   msys)
-    sudo=sudo
+	  SUDO()
+	  {
+		  $*
+	  }
     ;;
   win32)
-    sudo=sudo
+	  SUDO()
+	  {
+		  $*
+	  }
     ;;
   *)
-    sudo=sudo
+	  SUDO()
+	  {
+		  $*
+	  }
     ;;
 esac
 
@@ -33,7 +51,7 @@ NAME="fkdev-$RANDOM"
 
 #$sudo docker stop "$NAME" &2>/dev/null && sleep 5 || true
 #$sudo docker rm "$NAME" &2>/dev/null && sleep 5 || true
-$sudo docker run -d \
+SUDO docker run -d \
       --privileged \
       --name "$NAME" \
       --label jojomachine=true \
@@ -45,3 +63,4 @@ $sudo docker run -d \
       -v "$HOME":/m$VOLUME_OPTS \
       -v /:/host \
       freakhill-dev
+
