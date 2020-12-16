@@ -11,7 +11,7 @@ add-apt-repository -y multiverse
 add-apt-repository -y restricted
 apt-get update
 #apt-get install -y python2 python-pip python3 python3-pip
-apt-get install -y python2 python3 python3-pip
+apt-get install -y python python2 python3 python3-pip
 
 apt-get -y install \
         nodejs \
