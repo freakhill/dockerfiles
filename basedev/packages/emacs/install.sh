@@ -1,7 +1,7 @@
 post_install() {
     # cask
     info "installing cask"
-    curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+    curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python3
     # update
     pushd "$PKGDIR"
     export PATH="$HOME/.cask/bin":$PATH
