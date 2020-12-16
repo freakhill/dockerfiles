@@ -54,6 +54,7 @@ post_install() {
     info "link tmux and git config"
     rm -f "$HOME"/.tmux.conf
     ln -s "$PKGDIR"/tmux.conf "$HOME"/.tmux.conf
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     info "link git config"
     rm -f "$HOME"/.gitconfig
     ln -s "$PKGDIR"/gitconfig "$HOME"/.gitconfig
