@@ -10,7 +10,7 @@ add-apt-repository -y universe
 add-apt-repository -y multiverse
 add-apt-repository -y restricted
 apt-get update
-apt-get install -y python2 python-pip python3 python3-pip
+apt-get install -y python2 python2-pip python3 python3-pip
 
 apt-get -y install \
         nodejs \
