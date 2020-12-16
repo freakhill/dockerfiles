@@ -47,7 +47,7 @@ dpkg -i vivid_0.5.0_amd64.deb
 # used by zola
 apt-get install -y libssl-dev libsass-dev pkg-config
 # used by inkwell (rust llvm lib)
-apt-get install -y llvm-7-dev llvm-7-tools
+#apt-get install -y llvm-7-dev llvm-7-tools
 
 apt-get -y install openjdk-11-jdk
 
