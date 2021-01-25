@@ -9,7 +9,7 @@ case $OSTYPE in
     VOLUME_OPTS=":delegated"
     ;;
   linux-gnu*)
-	  if dmsg | grep Msft
+	  if dmesg | grep Msft
 	  then
 		  SUDO()
 		  {
