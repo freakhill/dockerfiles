@@ -4,7 +4,7 @@
 # in the container we want to debug!
 # IMAGE NAME: debug
 
-FROM freakhill/guixbuilder:daily-15-03-2020 AS guixbuilder
+FROM freakhill/guixbuilder:daily-27-09-2020 AS guixbuilder
 RUN pack /guixbins \
         bash less vim emacs curl wget ncdu netcat unzip tar bzip2
 
