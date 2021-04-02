@@ -21,7 +21,7 @@ unzip $BB
 rm $BB
 popd
 
-pushd ~/.local/bin
+pushd /usr/local/bin
 wget https://github.com/snoe/clojure-lsp/releases/download/release-20200511T135432/clojure-lsp
 chmod 755 clojure-lsp
 popd
