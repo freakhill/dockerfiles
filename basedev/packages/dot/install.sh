@@ -31,6 +31,7 @@ post_install() {
     mkdir -p "$HOME"/.local/{bin,etc,run,lib,share,var/log}
     mkdir -p "$HOME"/.go
     mkdir -p "$HOME"/.clojure
+    mkdir -p "$HOME"/.config
 
     for pkg in `packages_from_github`
     do
@@ -51,6 +52,8 @@ post_install() {
     [ "$(ls -A "$HOME"/.ssh/config.0)" ] && info "config.0 not empty" \
             || cp "$HOME"/.ssh/config "$HOME"/.ssh/config.0/oldconfig
 
+    info "link starship config"
+    ln -s "$PKGDIR"/starship.toml "$HOME"/.config/starship.toml
     info "link tmux and git config"
     rm -f "$HOME"/.tmux.conf
     ln -s "$PKGDIR"/tmux.conf "$HOME"/.tmux.conf
