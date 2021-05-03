@@ -41,10 +41,8 @@ RUN /install/stuff-root.sh
 COPY install/stuff.sh /install
 RUN su -c "/install/stuff.sh" $THE_USER
 ### emacs
-COPY install/emacs-root-1.sh /install
-RUN /install/emacs-root-1.sh
-COPY install/emacs-root-2.sh /install
-RUN /install/emacs-root-2.sh
+COPY install/emacs-root.sh /install
+RUN /install/emacs-root.sh
 ### aws rds certificates
 COPY install/import-rds-certs.sh /install
 RUN /install/import-rds-certs.sh
