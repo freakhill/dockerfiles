@@ -4,7 +4,9 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+(setq warning-suppress-log-types '((package reinitialization)))
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -128,7 +130,6 @@
   (setq uniquify-ignore-buffers-re "^\\*")
 
   (setq initial-major-mode 'lisp-interaction-mode
-        redisplay-dont-pause t
         column-number-mode t
         echo-keystrokes 0.02
         inhibit-startup-message t
@@ -166,7 +167,7 @@
   (show-paren-mode 1)
 
   ;; make emacs use the clipboard
-  (setq x-select-enable-clipboard t)
+  (setq select-enable-clipboard t)
   ;;remove all trailing whitespace and trailing blank lines before
   ;;saving the file
   (defvar live-ignore-whitespace-modes '(markdown-mode))
@@ -273,6 +274,7 @@
   (global-set-key (kbd "C-c <right>") 'buf-move-right))
 
 (defun my-evil ()
+  (evil-mode 1)
   ;; C-z switches between modes (states in evil parlance)
   (setq evil-mode-line-format 'before)
 
@@ -283,8 +285,6 @@
   (setq evil-insert-state-cursor   '("red" bar))
   (setq evil-replace-state-cursor  '("red" bar))
   (setq evil-operator-state-cursor '("red" hollow))
-
-  (evil-mode 1)
 
   (evil-define-key 'normal global-map "," 'evil-execute-in-god-state)
   (evil-define-key 'normal global-map (kbd "m") 'evil-set-marker)
@@ -617,9 +617,10 @@
     :ensure t)
   (use-package lsp-mode
     :ensure t
-    :hook ((clojure-mode . lsp)
-           (clojurec-mode . lsp)
-           (clojurescript-mode . lsp))
+    :init
+    (add-hook 'clojure-mode #'lsp)
+    (add-hook 'clojurec-mode #'lsp)
+    (add-hook 'clojurescript-mode #'lsp)
     :config
     ;; add paths to your local installation of project mgmt tools, like lein
     (setenv "PATH" (concat
@@ -865,44 +866,7 @@
 (defun my-capnp ()
   (add-to-list 'auto-mode-alist '("\\.capnp\\'" . capnp-mode)))
 
-(defun my-polymodes ()
-  (require 'polymode)
-  (defcustom pm-host/C++
-    (pm-bchunkmode "C++"
-                   :mode 'c++-mode)
-    "C++ host chunkmode"
-    :group 'hostmodes
-    :type 'object)
-  (defcustom pm-inner/Org
-    (pm-hbtchunkmode "Org"
-                     :mode 'org-mode
-                     :head-reg "^[ \t]*/\\*\\*org$"
-                     :tail-reg "^[ \t]*org\\*/$"
-                     :font-lock-narrow t)
-    "Org inner chunk"
-    :group 'innermodes
-    :type 'object)
-  (defcustom pm-inner/Markdown
-    (pm-hbtchunkmode "Markdown"
-                     :mode 'markdown-mode
-                     :head-reg "^[ \t]*/\\*\\*md[ \t]+"
-                     :tail-reg ".*md\\*/$"
-                     :font-lock-narrow t)
-    "Org inner chunk"
-    :group 'innermodes
-    :type 'object)
-  (defcustom pm-poly/c++doc
-    (pm-polymode-multi "c++doc"
-                       :hostmode 'pm-host/C++
-                       :innermodes '(pm-inner/Org
-                                     pm-inner/Markdown))
-    "C++ & Org polymode."
-    :group 'polymodes
-    :type 'object)
-  (define-polymode poly-c++doc pm-poly/c++doc))
-
 (defun my-os-custom ()
-
   ;;--- set firefox as browser
   ;;(setq browse-url-browser-function 'browse-url-generic
   ;;      browse-url-generic-program "firefox")
@@ -1102,7 +1066,6 @@
    (my-markdown)
    (my-asciidoc)
    (my-capnp)
-   ;; (my-polymodes)
    ;; --------------------------------------
    ;; other
    ;; --------------------------------------
