@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -ev
+
 #add-apt-repository ppa:ubuntu-elisp/ppa
 #apt-get update -y
 #export DEBIAN_FRONTEND=noninteractive
