@@ -312,13 +312,6 @@
   ;; use "%" to travel through matching syntax elements
   (global-evil-matchit-mode 1))
 
-(defun my-evil-exchange ()
-  (require 'evil-exchange)
-  (evil-exchange-install))
-
-(defun my-evil-magit ()
-  (require 'evil-magit))
-
 (defun my-magit ()
   (setq magit-last-seen-setup-instructions "1.4.0")
   (add-hook 'magit-log-edit-mode-hook
@@ -637,11 +630,7 @@
                  clojurescript-mode
                  clojurex-mode))
       (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
-  (use-package company-lsp
-    :ensure t
-    :commands company-lsp)
-  (lsp-treemacs-sync-mode 1)
-  (push 'company-lsp company-backends))
+  (lsp-treemacs-sync-mode 1))
 
 (defun my-rust ()
   (with-eval-after-load 'lsp-mode
@@ -807,9 +796,6 @@
         nrepl-popup-stacktraces-in-repl t
         nrepl-history-file              "~/nrepl-history.dat")
   (add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode)))
-
-(defun my-haskell ()
-  (add-hook 'haskell-mode-hook 'intero-mode))
 
 (defun my-rtags ()
   (cond
@@ -1072,8 +1058,6 @@
    (my-evil-surround)
    (my-evil-multiedit)
    ;; (my-evil-matchit)
-   (my-evil-exchange)
-   ;; (my-evil-magit)
    (my-avy)
    (my-ace-jump-buffer)
    (my-windmove)
@@ -1114,7 +1098,6 @@
    (my-ruby)
    (my-parinfer)
    (my-lisp)
-   ;; (my-haskell)
    ;; (my-csharp)
    (my-markdown)
    (my-asciidoc)

@@ -17,9 +17,7 @@
 (depends-on "evil-surround")
 (depends-on "evil-god-state")
 (depends-on "evil-multiedit")
-(depends-on "evil-magit")
 (depends-on "evil-matchit")
-(depends-on "evil-exchange")
 (depends-on "evil-lispy") ;; :git "git@github.com:sp3ctum/evil-lispy.git"
 ;; --- completion
 ;;(depends-on "auto-complete")
@@ -71,7 +69,6 @@
 (depends-on "toml-mode")
 (depends-on "racer")                 ;; cargo install racer
 (depends-on "lsp-mode")
-(depends-on "company-lsp")
 (depends-on "lsp-ui")
 (depends-on "lsp-treemacs")
 ;; --- c#
@@ -83,9 +80,6 @@
 (depends-on "irony")
 (depends-on "company-irony")
 (depends-on "irony-eldoc")
-;; --- haskell
-(depends-on "haskell-mode")
-(depends-on "intero")
 ;; --- android
 (depends-on "android-mode")
 ;; --- markdown
